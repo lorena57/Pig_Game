@@ -18,6 +18,14 @@ const scores = [0, 0];
 let currentScore = 0;
 let activePlayer = 0;
 
+let switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  currentScore = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  player0El.classList.toggle('player--active');
+  player1El.classList.toggle('player--active');
+};
+
 score0El.textContent = 0;
 score1El.textContent = 0;
 diceEl.classList.add('hidden');
@@ -33,15 +41,13 @@ btnRoll.addEventListener('click', function () {
     document.getElementById(`current--${activePlayer}`).textContent =
       currentScore;
   } else {
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    currentScore = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    player0El.classList.toggle('player--active');
-    player1El.classList.toggle('player--active');
+    switchPlayer();
   }
 });
 
 btnHold.addEventListener('click', function () {
   scores[activePlayer] += currentScore;
-  document.getElementById(`score--${activePlayer}`);
+  document.getElementById(`score--${activePlayer}`).textContent =
+    scores[activePlayer];
+  switchPlayer();
 });
