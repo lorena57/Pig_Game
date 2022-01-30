@@ -14,11 +14,13 @@ const current1El = document.getElementById('current--1');
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
 
+let scores, currentScore, activePlayer, playing;
+
 const init = function () {
-  const scores = [0, 0];
-  let currentScore = 0;
-  let activePlayer = 0;
-  let playing = true;
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
   current0El.textContent = 0;
   current1El.textContent = 0;
   score0El.textContent = 0;
@@ -29,6 +31,7 @@ const init = function () {
   player0El.classList.add('player--active');
   player1El.classList.remove('player--active');
 };
+init();
 
 let switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
@@ -75,4 +78,4 @@ btnHold.addEventListener('click', function () {
   }
 });
 
-btnNew.addEventListener('click', function () {});
+btnNew.addEventListener('click', init);
